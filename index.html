@@ -1,1 +1,65 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Sora Video Downloader</title>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 600px; margin: 50px auto; padding: 20px; text-align: center; }
+        input { width: 80%; padding: 10px; font-size: 16px; }
+        button { padding: 10px 20px; font-size: 16px; margin: 10px; background: #007bff; color: white; border: none; cursor: pointer; }
+        button:hover { background: #0056b3; }
+        .bookmarklet { display: inline-block; padding: 10px 20px; background: #28a745; color: white; text-decoration: none; border-radius: 5px; font-size: 18px; margin: 20px; }
+        .bookmarklet:hover { background: #218838; }
+        .instructions { background: #f8f9fa; padding: 20px; border-radius: 10px; margin: 20px 0; text-align: left; }
+        h1 { color: #333; }
+    </style>
+</head>
+<body>
+    <h1>🛠️ Simple Sora Video Downloader</h1>
+    <p>Download Sora AI videos from share links easily. No extensions needed!</p>
+    
+    <input type="url" id="soraUrl" placeholder="Paste Sora share link here (e.g., https://sora.chatgpt.com/p/s_...)">
+    <br>
+    <button onclick="openSoraPage()">Open Video Page</button>
+    
+    <div class="instructions">
+        <h3>📋 Quick Instructions:</h3>
+        <ol>
+            <li><strong>Drag the green button below to your bookmarks bar</strong> (name it "Sora Download").</li>
+            <li>Paste Sora link above & click "Open Video Page".</li>
+            <li>On the video page, <strong>click the bookmarklet</strong>.</li>
+            <li>A new tab opens with the raw MP4 video – right-click & "Save video as..."!</li>
+        </ol>
+        <p><strong>How to get Sora link:</strong> In Sora app/web, open video > More (⋯) > Copy Link.</p>
+    </div>
+    
+    <a href="javascript:(function(){var t=document.querySelector('.absolute.cursor-default');if(t){var v=t.querySelector('video');if(v&&v.src){window.open(v.src,'_blank','noopener,noreferrer');alert('Video opened! Right-click to save.');return;}}var videos=document.querySelectorAll('video');for(var i=0;i<videos.length;i++){if(videos[i].src&&videos[i].src.includes('.mp4')){window.open(videos[i].src,'_blank','noopener,noreferrer');alert('Video opened! Right-click to save.');return;}}alert('Video not found. Try refreshing the page or check if it\'s a valid Sora video.');})();" 
+       class="bookmarklet" draggable="true" ondragstart="event.dataTransfer.setData('text/plain', event.target.href)">
+        ⭐ Drag to Bookmarks: Sora Download ⭐
+    </a>
+    
+    <p style="font-size: 12px; color: #666; margin-top: 30px;">
+        Works on https://sora.chatgpt.com/p/... or https://sora.com/... | Free & Private | Made with ❤️ for Sora fans
+    </p>
+
+    <script>
+        function openSoraPage() {
+            const url = document.getElementById('soraUrl').value.trim();
+            if (!url) {
+                alert('Please paste a Sora link first!');
+                return;
+            }
+            if (!url.includes('sora.chatgpt.com') && !url.includes('sora.com')) {
+                alert('Please paste a valid Sora share link!');
+                return;
+            }
+            window.open(url, '_blank', 'noopener,noreferrer');
+        }
+        
+        // Auto-focus input
+        document.getElementById('soraUrl').focus();
+    </script>
+</body>
+</html>
